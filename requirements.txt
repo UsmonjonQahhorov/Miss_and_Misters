@@ -1,0 +1,15 @@
+django==4.2.5
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.0
+psycopg2-binary==2.9.7
+drf-spectacular==0.26.4
+celery[redis]==5.3.4
+python-environ==0.4.54
+elasticsearch==8.10.1
+elasticsearch-dsl==8.9.0
+django-elasticsearch-dsl==8
+django-elasticsearch-dsl-drf==0.22.5
+django-oauth-toolkit
+channels==4.0.0
+daphne==4.0.0
+channels_redis==4.1.0
