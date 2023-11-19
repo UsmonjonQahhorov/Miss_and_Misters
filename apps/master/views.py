@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework.response import Response
 
-from apps.master.serializers import MasterRegisterSerializer, CheckActivationSerializer
+from apps.master.serializers import MasterRegisterSerializer, CheckMActivationCodeSerializer
 from apps.users.models import getKey
 
 
@@ -17,7 +17,7 @@ class MasterRegisterCreateAPIView(CreateAPIView):
 
 
 class CheckActivationCodeAPIView(GenericAPIView):
-    serializer_class = CheckActivationSerializer
+    serializer_class = CheckMActivationCodeSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -25,6 +25,7 @@ class CheckActivationCodeAPIView(GenericAPIView):
         data = serializer.validated_data
 
         user_data = getKey(key=data['email'])
+        print(f"View: {user_data}")
         if not user_data or user_data['activate_code'] != data['activation_code']:
             return Response({"error": "Error activating user. Invalid activation code or email."},
                             status=status.HTTP_400_BAD_REQUEST)
