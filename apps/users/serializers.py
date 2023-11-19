@@ -83,7 +83,7 @@ class CheckActivationCodeSerializer(serializers.Serializer):
         data = getKey(key=attrs['email'])
         print(data)
         if data and data['activation_code'] == attrs['activation_code']:
-            user = data['user']
+            user = data['master']
             user.is_verified = True
             return attrs
 
@@ -114,3 +114,4 @@ class UserRetriveSerializer(serializers.ModelSerializer):
             'phone_number',
             'gender',
         ]
+
