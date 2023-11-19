@@ -6,5 +6,6 @@ from apps.users.views import (UserRegisterCreateAPIView, UserInfoListAPIView, Ch
                               ResetPasswordView, ResetPasswordConfirmView)
 
 urlpatterns = [
-    path("master/api/register", MasterRegisterCreateAPIView.as_view())
+    path("master/api/register", MasterRegisterCreateAPIView.as_view()),
+    path('master/api/activation', CheckActivationCodeAPIView.as_view()),
 ]

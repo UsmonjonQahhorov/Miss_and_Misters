@@ -5,7 +5,8 @@ from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
 from rest_framework import status
 from rest_framework import serializers
-from apps.master.models import Master, setKey, getKey
+from apps.master.models import Master, getCash, setKeyword
+
 from config.settings import EMAIL_HOST_USER
 
 
@@ -64,15 +65,15 @@ class MasterRegisterSerializer(serializers.ModelSerializer):
             age=attrs['age'],
             password=make_password(attrs['password']),
         )
-        setKey(
+        setKeyword(
             key=attrs['email'],
             value={
-                "user": master,
+                "master": master,
                 "activate_code": activation_code
             },
             timeout=300
         )
-        print(getKey(key=attrs['email']))
+        print(getCash(key=attrs['email']))
         send_mail(
             subject="Activation code for your account",
             message=f"Your activate code.\n{activation_code}",
@@ -81,3 +82,5 @@ class MasterRegisterSerializer(serializers.ModelSerializer):
             fail_silently=False,
         )
         return super().validate(attrs)
+
+ 
