@@ -77,19 +77,24 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 class CheckActivationCodeSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    activation_code = serializers.IntegerField()
+    activation_code = serializers.IntegerField(write_only=True)
 
     def validate(self, attrs):
-        data = getKey(key=attrs['email'])
-        print(data)
-        if data and data['activation_code'] == attrs['activation_code']:
-            user = data['master']
-            user.is_verified = True
-            return attrs
+        email = attrs['email']
 
-        raise serializers.ValidationError(
-            {"error": "Wrong activation code or email"}
-        )
+        if User.objects.filter(email=email).exists():
+            raise serializers.ValidationError("This email address is already confirmed.")
+        else:
+            data = getKey(key=attrs['email'])
+            if data and 'activation_code' in data and 'user' in data:
+                if data['activation_code'] == attrs['activation_code']:
+                    user = data['user']
+                    user.is_verified = True
+                    return attrs
+
+            raise serializers.ValidationError(
+                {"error": "Invalid activation code or email"}
+            )
 
 
 class ResetPasswordSerializer(serializers.Serializer):
@@ -114,4 +119,3 @@ class UserRetriveSerializer(serializers.ModelSerializer):
             'phone_number',
             'gender',
         ]
-

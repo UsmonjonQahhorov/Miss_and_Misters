@@ -7,6 +7,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.core.exceptions import PermissionDenied
 
+from apps.master.models import Master
 from apps.users.models import User, getKey
 from apps.users.permissions import UserPermission
 from apps.users.serializers import UserRegisterSerializer, UserRetriveSerializer, CheckActivationCodeSerializer, \
@@ -23,24 +24,25 @@ class UserRegisterCreateAPIView(CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
-class UserInfoListAPIView(ListAPIView):
-    queryset = User.objects.all()
-    permission_classes = [UserPermission, AllowAny]
+class ProfileInfoListAPIView(ListAPIView):
+    permission_classes = [UserPermission]  # Adjust this based on your needs
     serializer_class = UserRetriveSerializer
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            if self.request.user.is_superuser:
+        user = self.request.user
+        if user.is_authenticated:
+            if user.is_superuser:
                 return User.objects.all()
+            elif hasattr(user, 'master'):  # Assuming you have a master attribute in User model
+                return Master.objects.filter(user_ptr=user.id)
             else:
-                return User.objects.filter(id=self.request.user.id)
+                return User.objects.filter(id=user.id)
         else:
-            raise PermissionDenied("User is not authenticated")
+            return User.objects.none()  # Or you can raise PermissionDenied here
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
-        serializer_class = UserRetriveSerializer
-        serializer = serializer_class(queryset, many=True)
+        serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
 

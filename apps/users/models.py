@@ -9,7 +9,7 @@ from apps.users.manager import UserManager
 from apps.users.validators import CustomEmailValidator
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(validators=[CustomEmailValidator()])
 
     first_name = models.CharField(
