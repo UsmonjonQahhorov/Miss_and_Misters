@@ -1,10 +1,18 @@
 from django.db import models
 from django.core.cache import cache
+
+from apps.salons.models import Salons
 from apps.shared.models import BaseModel
 from apps.users.choices import GenderChoices
 
 
 class Master(BaseModel):
+    salon = models.ForeignKey(
+        'salons.Salons',
+        on_delete=models.CASCADE,
+        related_name="masters",
+    )
+
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     description = models.TextField()

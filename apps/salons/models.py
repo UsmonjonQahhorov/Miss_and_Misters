@@ -10,8 +10,8 @@ class Salons(BaseModel):
     address_line = models.CharField(max_length=255)
 
     class Meta:
-        verbose_name = "salon"
-        verbose_name_plural = "salons"
+        verbose_name = "Salon"
+        verbose_name_plural = "Salons"
 
     def __str__(self):
         return f"{self.name}"
