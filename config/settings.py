@@ -41,7 +41,8 @@ THIRD_PARTY_APPS = [
 PROJECT_APPS = [
     'apps.users',
     'apps.master',
-    "apps.salons"
+    "apps.salons",
+    'apps.orders',
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
@@ -90,6 +91,8 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+AUTH_USER_MODEL = 'apps/users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
