@@ -258,3 +258,7 @@ cython_debug/
 /apps/master/migrations
 /apps/core/migrations
 /apps/shared/migrations
+apps/salons/migrations
+apps/region_districts/migrations
+apps/orders/migrations
+apps/services/migrations
