@@ -3,13 +3,13 @@ from apps.shared.models import BaseModel
 
 
 class Services(BaseModel):
-    category_id = models.ForeignKey(
+    category = models.ForeignKey(
         "Category",
         on_delete=models.CASCADE,
         related_name="service_category"
     )
 
-    master_id = models.ForeignKey(
+    master = models.ForeignKey(
         "master.Master",
         on_delete=models.CASCADE,
         related_name="masters_services"

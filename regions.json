@@ -1,60 +1,115 @@
-{
-    "regions":[
-        {
-            "id":1,
-            "name":"Qoraqalpog‘iston Respublikasi"
-        },
-        {
-            "id":2,
-            "name":"Andijon viloyati"
-        },
-        {
-            "id":3,
-            "name":"Buxoro viloyati"
-        },
-        {
-            "id":4,
-            "name":"Jizzax viloyati"
-        },
-        {
-            "id":5,
-            "name":"Qashqadaryo viloyati"
-        },
-        {
-            "id":6,
-            "name":"Navoiy viloyati"
-        },
-        {
-            "id":7,
-            "name":"Namangan viloyati"
-        },
-        {
-            "id":8,
-            "name":"Samarqand viloyati"
-        },
-        {
-            "id":9,
-            "name":"Surxandaryo viloyati"
-        },
-        {
-            "id":10,
-            "name":"Sirdaryo viloyati"
-        },
-        {
-            "id":11,
-            "name":"Toshkent viloyati"
-        },
-        {
-            "id":12,
-            "name":"Farg‘ona viloyati"
-        },
-        {
-            "id":13,
-            "name":"Xorazm viloyati"
-        },
-        {
-            "id":14,
-            "name":"Toshkent shahri"
+[
+    {
+        "model": "region_districts.region",
+        "pk": 1,
+        "fields": {
+            "id": 1,
+            "name": "Qoraqalpog‘iston Respublikasi"
         }
-    ]
-}
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 2,
+        "fields": {
+            "id": 2,
+            "name": "Andijon viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 3,
+        "fields": {
+            "id": 3,
+            "name": "Buxoro viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 4,
+        "fields": {
+            "id": 4,
+            "name": "Jizzax viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 5,
+        "fields": {
+            "id": 5,
+            "name": "Qashqadaryo viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 6,
+        "fields": {
+            "id": 6,
+            "name": "Navoiy viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 7,
+        "fields": {
+            "id": 7,
+            "name": "Namangan viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 8,
+        "fields": {
+            "id": 8,
+            "name": "Samarqand viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 9,
+        "fields": {
+            "id": 9,
+            "name": "Surxondaryo viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 10,
+        "fields": {
+            "id": 10,
+            "name": "Sirdaryo viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 11,
+        "fields": {
+            "id": 11,
+            "name": "Toshkent viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 12,
+        "fields": {
+            "id": 12,
+            "name": "Fargona viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 13,
+        "fields": {
+            "id": 13,
+            "name": "Xorazm viloyati"
+        }
+    },
+    {
+        "model": "region_districts.region",
+        "pk": 14,
+        "fields": {
+            "id": 14,
+            "name": "Toshkent shaxri"
+        }
+    }
+
+]

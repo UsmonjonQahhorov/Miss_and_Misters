@@ -44,7 +44,8 @@ PROJECT_APPS = [
     "apps.salons",
     'apps.orders',
     'apps.services',
-    'apps.region_districts'
+    'apps.region_districts',
+    'apps.client'
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "beautys_barber_db",
+        'NAME': "beauty_db",
         'USER': "postgres",
         'PASSWORD': '1',
         'HOST': "localhost",
