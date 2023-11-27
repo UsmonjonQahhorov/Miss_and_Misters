@@ -10,6 +10,7 @@ from apps.orders.serializers import OrderSerializers, OrderRetriveSerializers
 
 class OrderCreateView(CreateAPIView):
     serializer_class = OrderSerializers
+    permission_classes = [OrderPermission]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -43,7 +44,7 @@ class OrderListView(ListAPIView):
 class OrderUpdateView(UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializers
-    # permission_classes = [OrderPermission]
+    permission_classes = [OrderPermission]
 
     def update(self, request, *args, **kwargs):
         try:
@@ -64,6 +65,8 @@ class OrderDeleteView(DestroyAPIView):
         try:
             order = self.get_object()
             self.perform_destroy(order)
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            custom_message = "Order deleted successfully"
+            return Response({'message': custom_message}, status=status.HTTP_204_NO_CONTENT)
+
         except Order.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
