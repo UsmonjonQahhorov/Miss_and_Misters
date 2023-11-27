@@ -3,11 +3,10 @@ import re
 
 from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail
-from rest_framework import status
 from rest_framework import serializers
+
 from apps.master.models import Master, getCash, setKeyword
 from apps.users.models import getKey
-
 from config.settings import EMAIL_HOST_USER
 
 
@@ -40,6 +39,7 @@ class MasterRegisterSerializer(serializers.ModelSerializer):
             'languages',
             'experiance',
             'age',
+            'salon',
             'password',
         ]
 
@@ -62,6 +62,7 @@ class MasterRegisterSerializer(serializers.ModelSerializer):
             gender=attrs['gender'],
             languages=attrs['languages'],
             experiance=attrs['experiance'],
+            salon=attrs['salon'],
             age=attrs['age'],
             password=make_password(attrs['password']),
         )
@@ -106,3 +107,20 @@ class CheckMActivationCodeSerializer(serializers.Serializer):
             raise serializers.ValidationError(
                 {"error": "Invalid activation code or email"}
             )
+
+
+class MasterRetriveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Master
+        fields = [
+            'first_name',
+            'last_name',
+            'description',
+            'email',
+            'phone_number',
+            'status',
+            'languages',
+            'salon_id',
+            'experiance',
+            'age',
+        ]

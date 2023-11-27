@@ -5,7 +5,7 @@ from apps.salons.views import SalonsDetailViewSet, SalonsUpdateViewSet, SalonsDe
 
 urlpatterns = [
     path('salon/create/', SalonsCreateViewSet.as_view()),
-    path('salon/detail/<int:pk>/', SalonsDetailViewSet.as_view()),
+    path('salon/detail/', SalonsDetailViewSet.as_view()),
     path('salon/update/<int:pk>/', SalonsUpdateViewSet.as_view()),
     path('salon/delete/<int:pk>/', SalonsDeleteViewSet.as_view())
 ]

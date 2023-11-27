@@ -1,8 +1,9 @@
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView
 from rest_framework.response import Response
 
-from apps.master.serializers import MasterRegisterSerializer, CheckMActivationCodeSerializer
+from apps.master.models import Master
+from apps.master.serializers import MasterRegisterSerializer, CheckMActivationCodeSerializer, MasterRetriveSerializer
 from apps.users.models import getKey
 
 
@@ -36,3 +37,26 @@ class CheckActivationCodeAPIView(GenericAPIView):
         user.save()
 
         return Response({"message": "Your email has been confirmed"}, status=status.HTTP_200_OK)
+
+
+class MasterInfoView(ListAPIView):
+    # permission_classes = [MasterPermission]
+    serializer_class = MasterRetriveSerializer
+
+    def get_queryset(self):
+        master = self.request.user
+        print(master)
+        if master.is_authenticated:
+            if master.is_superuser:
+                return Master.objects.all()
+            elif hasattr(master, 'master'):
+                return Master.objects.filter(id=master.id)
+            else:
+                return Master.objects.filter(id=master.id)
+        else:
+            return Master.objects.none()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.serializer_class(queryset, many=True)
+        return Response(serializer.data)

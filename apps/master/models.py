@@ -1,7 +1,6 @@
-from django.db import models
 from django.core.cache import cache
-
-from apps.salons.models import Salons
+from django.db import models
+from apps.users.models import User
 from apps.shared.models import BaseModel
 from apps.users.choices import GenderChoices
 
@@ -12,20 +11,21 @@ class Master(BaseModel):
         on_delete=models.CASCADE,
         related_name="masters",
     )
+    #
+    # user = models.ForeignKey(
+    #     User,
+    #     on_delete=models.CASCADE,
+    #     related_name="users"
+    # )
 
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     description = models.TextField()
     status = models.BooleanField(default=False)
-    email = models.EmailField()
-    phone_number = models.CharField(max_length=13)
     gender = models.CharField(choices=GenderChoices.choices)
     languages = models.CharField(max_length=250)
     experiance = models.CharField(max_length=250)
-    password = models.CharField(max_length=250)
     age = models.IntegerField()
-
-    is_verified = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Master'
