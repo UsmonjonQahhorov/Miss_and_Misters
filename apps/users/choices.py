@@ -7,6 +7,5 @@ class GenderChoices(models.TextChoices):
 
 
 class UserStatusChoices(models.TextChoices):
-    ADMIN = ("admin", "Admin")
     MASTER = ("master", "Master")
     USER = ("user", "User")

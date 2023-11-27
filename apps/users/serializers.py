@@ -12,12 +12,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'first_name',
-            'last_name',
+            'username',
             'email',
             'phone_number',
-            'birth_date',
-            'gender',
+            'status'
         ]
 
 
@@ -25,13 +23,10 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'first_name',
-            'last_name',
-            'email',
             'phone_number',
-            'birth_date',
-            'gender',
+            'email',
             'password',
+            'status',
         ]
 
     def validate_email(self, value):
@@ -46,13 +41,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         activation_code = random.randint(100000, 999999)
         user = User(
-            first_name=attrs['first_name'],
-            last_name=attrs['last_name'],
             email=attrs['email'],
             phone_number=attrs['phone_number'],
             password=make_password(attrs['password']),
-            gender=attrs['gender'],
-            birth_date=attrs['birth_date'],
             is_active=True,
         )
         setKey(
@@ -113,10 +104,10 @@ class UserRetriveSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'id',
-            'first_name',
-            'last_name',
-            'birth_date',
+            # 'first_name',
+            # 'last_name',
+            # 'birth_date',
             'email',
             'phone_number',
-            'gender',
+            # 'gender',
         ]

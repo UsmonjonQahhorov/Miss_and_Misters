@@ -11,12 +11,7 @@ class Master(BaseModel):
         on_delete=models.CASCADE,
         related_name="masters",
     )
-    #
-    # user = models.ForeignKey(
-    #     User,
-    #     on_delete=models.CASCADE,
-    #     related_name="users"
-    # )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_master")
 
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)

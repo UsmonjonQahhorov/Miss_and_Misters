@@ -5,11 +5,7 @@ from apps.users.models import User
 
 
 class Client(BaseModel):
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name="user_client",
-    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user_client")
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     gender = models.CharField(choices=GenderChoices.choices)
