@@ -4,6 +4,6 @@ urlpatterns = [
     path('', include("apps.users.urls")),
     path('', include('apps.core.urls')),
     path('', include('apps.master.urls')),
-    path('', include('apps.salons.urls')),
-    path('', include('apps.orders.urls'))
+    # path('', include('apps.salons.urls')),
+    # path('', include('apps.orders.urls'))
 ]
