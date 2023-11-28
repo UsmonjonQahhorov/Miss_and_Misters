@@ -3,7 +3,7 @@ from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView
 from rest_framework.response import Response
 
 from apps.master.models import Master
-from apps.master.serializers import MasterRegisterSerializer, CheckMActivationCodeSerializer, MasterRetriveSerializer
+from apps.master.serializers import MasterRegisterSerializer, CheckMActivaationCodeSerializer, MasterRetriveSerializer
 from apps.users.models import getKey
 
 
@@ -18,7 +18,7 @@ class MasterRegisterCreateAPIView(CreateAPIView):
 
 
 class CheckActivationCodeAPIView(GenericAPIView):
-    serializer_class = CheckMActivationCodeSerializer
+    serializer_class = CheckMActivaationCodeSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
