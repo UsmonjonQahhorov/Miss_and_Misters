@@ -73,7 +73,7 @@ class CheckActivationCodeSerializer(serializers.Serializer):
     def validate(self, attrs):
         email = attrs['email']
 
-        if User.objects.filter(email=email).exists():
+        if User.objects.filter(email=email, is_verified=True).exists():
             raise serializers.ValidationError("This email address is already confirmed.")
         else:
             data = getKey(key=attrs['email'])

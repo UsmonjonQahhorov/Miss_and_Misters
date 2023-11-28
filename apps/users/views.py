@@ -22,7 +22,7 @@ class UserRegisterCreateAPIView(CreateAPIView):
 
 
 class ProfileInfoListAPIView(ListAPIView):
-    permission_classes = [UserPermission]  # Adjust this based on your needs
+    permission_classes = [UserPermission]
     serializer_class = UserRetriveSerializer
 
     def get_queryset(self):
@@ -30,12 +30,12 @@ class ProfileInfoListAPIView(ListAPIView):
         if user.is_authenticated:
             if user.is_superuser:
                 return User.objects.all()
-            elif hasattr(user, 'master'):  # Assuming you have a master attribute in User model
+            elif hasattr(user, 'master'):
                 return Master.objects.filter(user_ptr=user.id)
             else:
                 return User.objects.filter(id=user.id)
         else:
-            return User.objects.none()  # Or you can raise PermissionDenied here
+            return User.objects.none()
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
