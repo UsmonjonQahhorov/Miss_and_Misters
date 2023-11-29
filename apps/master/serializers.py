@@ -55,6 +55,7 @@ class MasterRegisterSerializer(serializers.Serializer):
             phone_number=attrs['phone_number'],
             password=make_password(attrs['password']),
             is_active=True,
+            status="master",
         )
         user.save()
 
@@ -90,29 +91,6 @@ class MasterRegisterSerializer(serializers.Serializer):
             fail_silently=False,
         )
         return attrs
-
-
-class CheckMActivaationCodeSerializer(serializers.Serializer):
-    email = serializers.EmailField()
-    activation_code = serializers.IntegerField(write_only=True)
-
-    def validate(self, attrs):
-        email = attrs['email']
-        if User.objects.filter(email=email).exists():
-            raise serializers.ValidationError("This email address is already confirmed.")
-        else:
-            data = getKey(key=email)
-            print(f"data: {data}")
-            if data and 'activation_code' in data and 'master' in data:
-                if data['activation_code'] == attrs['activation_code']:
-                    master = data['master']
-                    master.is_verified = True
-                    master.save()
-                    return attrs
-
-            raise serializers.ValidationError(
-                {"error": "Invalid activation code or email"}
-            )
 
 
 class MasterRetriveSerializer(serializers.ModelSerializer):
