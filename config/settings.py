@@ -192,7 +192,7 @@ SIMPLE_JWT = {
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'FreelanceHub Project API',
+    'TITLE': 'Miss&Misters Barber',
     'DESCRIPTION': 'API endpoints for FreelanceHub Project',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
